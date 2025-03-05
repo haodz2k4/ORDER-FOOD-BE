@@ -1,14 +1,16 @@
 import express, {Express} from "express";
-import {config as configDotenv} from "dotenv";
-import {config} from "./config/config";
-
+import dotenv from "dotenv";
+dotenv.config()
+import config from "./config/config";
+import { getConnection } from "./config/database";
 
 const app: Express = express();
 
 
 
 const App = () => {
-    configDotenv()
+
+    getConnection()
 
     const PORT = config.PORT;
     app.listen(PORT,() => {
