@@ -16,7 +16,8 @@
     "http-status": "^2.1.0",
     "mongoose": "^8.12.1",
     "nodemon": "^3.1.9",
-    "order-food-be": "file:"
+    "order-food-be": "file:",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "@types/node": "^22.13.9",
