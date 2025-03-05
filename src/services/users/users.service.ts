@@ -7,23 +7,21 @@ import { UpdateUser } from "./interfaces/update-user.interface";
 
 export class UsersService{
 
-    static create(createData: CreateUser) {
-        throw new Error("Method not implemented.");
+    static async create(createData: CreateUser) {
+        return await userModel.create(createData);
     }
 
-    static getMany(query?: QueryUser)  {
-        throw new Error("Method not implemented.");
-    }
-    static getOne(id: string) {
-        throw new Error("Method not implemented.");
-    }
-    static update(id: string, data?: UpdateUser){
-        throw new Error("Method not implemented.");
-    }
-    static delete(id: string) {
-        throw new Error("Method not implemented.");
+    static async getMany(query?: QueryUser)  {
+        return await userModel.find()
     }
 
-
-    
+    static async getOne(id: string) {
+        return await userModel.findById(id);
+    }
+    static async update(id: string, data?: UpdateUser){
+        return await userModel.findByIdAndUpdate({id})
+    }
+    static async delete(id: string) {
+        await userModel.deleteOne({id});
+    }
 }

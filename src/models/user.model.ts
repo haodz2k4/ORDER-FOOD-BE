@@ -20,11 +20,13 @@ const userSchema = new Schema({
         require: true
     },
     gender: {
-        type: UserGender,
+        type: String,
+        enum: [UserGender.FEMALE, UserGender.MALE],
         require: true 
     },
     status: {
-        type: UserStatus,
+        type: String,
+        enum: [UserStatus.ACTIVE, UserStatus.INACTIVE],
         default: UserStatus.ACTIVE
     },
     deletedAt: Date,
