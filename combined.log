@@ -3,3 +3,8 @@
 2025-03-05T08:27:29.046Z [INFO]: {"method":"GET","url":"/api/v1/users"}
 2025-03-05T08:33:19.486Z [INFO]: {"method":"GET","url":"/"}
 2025-03-05T08:46:58.629Z [INFO]: {"method":"GET","url":"/"}
+2025-03-05T08:51:28.806Z [INFO]: {"method":"GET","url":"/api/v1/users/98"}
+2025-03-05T08:52:15.827Z [INFO]: {"method":"GET","url":"/api/v1/users/98"}
+2025-03-05T08:54:17.244Z [INFO]: {"method":"GET","url":"/api/v1/users/98"}
+2025-03-05T08:54:30.751Z [INFO]: {"method":"GET","url":"/api/v1/users/98"}
+2025-03-05T08:55:39.662Z [INFO]: {"method":"GET","url":"/api/v1/users/98"}

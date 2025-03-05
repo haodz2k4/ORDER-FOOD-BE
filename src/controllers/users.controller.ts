@@ -2,6 +2,7 @@ import status from 'http-status';
 import { UsersService } from '../services/users/users.service';
 import { catchAsync } from './../utils/catch-async';
 import { Request, Response } from 'express';
+import { HttpException } from '../utils/http-error';
 
 //GET /users 
 export const getUsers = catchAsync(async(req: Request, res: Response) => {
@@ -13,6 +14,9 @@ export const getUsers = catchAsync(async(req: Request, res: Response) => {
 export const getUserById = catchAsync(async (req: Request, res: Response) => {
     const {id} = req.params;
     const user = await UsersService.getOne(id);
+    if(!user) {
+        throw new HttpException(status.NOT_FOUND, "User is not found")
+    }
     res.status(status.OK).json(user);
 })
 
@@ -23,15 +27,18 @@ export const createUser = catchAsync(async (req: Request, res: Response) => {
     res.status(status.OK).json(user);
 })
 
-//UPDATE
+//UPDATE /users/:id
 export const updateUser = catchAsync(async (req: Request, res: Response) => {
     const {id} = req.params;
     const body = req.body;
     const user = await UsersService.update(id,body);
+    if(!user) {
+        throw new HttpException(status.NOT_FOUND, "User is not found")
+    }
     res.status(status.OK).json(user);
 })
 
-//DELETE 
+//DELETE /users/:id
 export const deleteUser = catchAsync(async (req: Request, res: Response) => {
     const {id} = req.params;
     await UsersService.delete(id);
