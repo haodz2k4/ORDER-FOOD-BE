@@ -19,7 +19,7 @@ const roleSchema = new Schema(
         deletedAt: {
             type: Date,
             default: null
-        }
+        },
     },
     {
         timestamps: true

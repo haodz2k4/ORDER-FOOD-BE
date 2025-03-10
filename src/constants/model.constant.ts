@@ -30,3 +30,4 @@ export enum ProductStatus {
     UNAVAILABLE = 'unavailable',
     DISCONTINUED = 'discontinued'
 }
+
