@@ -3,7 +3,7 @@ import Joi, { ObjectSchema } from "joi";
 
 
 
-export const validateRequest = (schema: {
+export const validateMiddleware = (schema: {
     body?: ObjectSchema,
     query?: ObjectSchema,
     param?: ObjectSchema
@@ -31,7 +31,8 @@ export const validateRequest = (schema: {
         }
 
         if (Object.keys(errors).length) {
-            return res.status(400).json({ errors });
+            res.status(400).json({ errors });
+            return;
         }
 
         next();

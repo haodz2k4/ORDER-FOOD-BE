@@ -6,15 +6,13 @@ const userSchema = new Schema({
         type: String,
         require: true
     },
+    avatar: String,
     email: {
         type: String,
         require: true,
         unique: true
     },
-    phone:{
-        type: String,
-        require: true,
-    },
+    phone: String,
     password: {
         type: String,
         require: true
@@ -30,6 +28,10 @@ const userSchema = new Schema({
         default: UserStatus.ACTIVE
     },
     deletedAt: Date,
+    verified: {
+        type: Boolean,
+        default: false 
+    },
     birthDate: Date
 },{timestamps: true})
 
