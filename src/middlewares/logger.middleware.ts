@@ -1,4 +1,4 @@
-import winston, { add } from 'winston';
+import winston from 'winston';
 import { NextFunction, Request, Response } from "express";
 import logger from "../config/logger";
 const console = new winston.transports.Console();
