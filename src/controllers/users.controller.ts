@@ -3,11 +3,17 @@ import { UsersService } from '../services/users/users.service';
 import { catchAsync } from './../utils/catch-async';
 import { Request, Response } from 'express';
 import { HttpException } from '../utils/http-error';
+import { Res } from '../utils/response';
+import { UserDto } from '../dto/user.dto';
 
 //GET /users 
 export const getUsers = catchAsync(async(req: Request, res: Response) => {
     const users = await UsersService.getMany(req.query);
-    res.status(status.OK).json(users);
+    Res({
+        res,
+        message: 'Get users',
+        data: users
+    })
 })
 
 //GET /users/:id
@@ -17,14 +23,23 @@ export const getUserById = catchAsync(async (req: Request, res: Response) => {
     if(!user) {
         throw new HttpException(status.NOT_FOUND, "User is not found")
     }
-    res.status(status.OK).json(user);
+    Res<UserDto>({
+        res,
+        message: 'Get user by id',
+        data: user
+    })
 })
 
 //POST /users
 export const createUser = catchAsync(async (req: Request, res: Response) => {
     const body = req.body;
     const user = await UsersService.create(body);
-    res.status(status.OK).json(user);
+    Res<UserDto>({
+        res,
+        statusCode: status.CREATED,
+        message: 'Create user',
+        data: user 
+    })
 })
 
 //UPDATE /users/:id
@@ -35,12 +50,16 @@ export const updateUser = catchAsync(async (req: Request, res: Response) => {
     if(!user) {
         throw new HttpException(status.NOT_FOUND, "User is not found")
     }
-    res.status(status.OK).json(user);
+    Res({
+        res,
+        message: 'Update user',
+        data: user 
+    })
 })
 
 //DELETE /users/:id
 export const deleteUser = catchAsync(async (req: Request, res: Response) => {
     const {id} = req.params;
     await UsersService.delete(id);
-    res.status(status.NO_CONTENT);
+    Res({res, statusCode: status.NO_CONTENT})
 })

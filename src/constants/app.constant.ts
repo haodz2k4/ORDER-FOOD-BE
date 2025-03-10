@@ -1,3 +1,7 @@
+import status from "http-status";
+
+export const DefaultStatusCode = status.OK
+export const DefaultResponseMessage = 'success'
 
 export enum CrudEnum {
     CREATE = 'create',
