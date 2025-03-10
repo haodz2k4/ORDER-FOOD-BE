@@ -19,7 +19,10 @@ const accountSchema = new Schema({
         type: AccountStatus,
         default: AccountStatus.ACTIVE
     },
-    deletedAt: Date,
+    deletedAt: {
+        type: Date,
+        default: null
+    },
     roleId: {
         type: Schema.Types.ObjectId,
         ref: 'Role'

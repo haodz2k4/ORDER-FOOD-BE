@@ -27,7 +27,10 @@ const userSchema = new Schema({
         enum: [UserStatus.ACTIVE, UserStatus.INACTIVE],
         default: UserStatus.ACTIVE
     },
-    deletedAt: Date,
+    deletedAt: {
+        type: Date,
+        default: null
+    },
     verified: {
         type: Boolean,
         default: false 

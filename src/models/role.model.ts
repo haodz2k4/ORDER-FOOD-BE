@@ -15,6 +15,10 @@ const roleSchema = new Schema(
                 resource: {type: String, require: true}
             }],
             default: []
+        },
+        deletedAt: {
+            type: Date,
+            default: null
         }
     },
     {
