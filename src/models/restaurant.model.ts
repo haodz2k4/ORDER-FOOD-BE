@@ -1,9 +1,9 @@
 import { model, Schema } from "mongoose";
+import { RestaurantStatus } from "../constants/model.constant";
 
 
 const restaurantSchema = new Schema(
     {
-        ownerId: Schema.Types.ObjectId,
         name: {
             type: String,
             require: true 
@@ -11,6 +11,15 @@ const restaurantSchema = new Schema(
         description: {
             type: String,
             require: true 
+        },
+        business_license: {
+            type: String,
+            require: true 
+        },
+        status: {
+            type: String,
+            enum: RestaurantStatus,
+            default: RestaurantStatus.PENDING
         },
         phone: {
             type: String,

@@ -16,14 +16,15 @@ const accountSchema = new Schema({
         require: true
     },
     status: {
-        type: AccountStatus,
+        type: String,
+        enum: AccountStatus,
         default: AccountStatus.ACTIVE
     },
     deletedAt: {
         type: Date,
         default: null
     },
-    roleId: {
+    role: {
         type: Schema.Types.ObjectId,
         ref: 'Role'
     }
