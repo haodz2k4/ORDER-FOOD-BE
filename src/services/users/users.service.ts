@@ -73,11 +73,11 @@ export class UsersService{
     }
 
     static async getOne(id: string) :Promise<UserDto | null> {
-        const user = await userModel.findById(id);
+        const user = await userModel.findOne({id});
         return plainToInstance(UserDto, user);
     }
     static async update(id: string, data?: UpdateUser): Promise<UserDto>{
-        const user = await userModel.findById(id);
+        const user = await userModel.findOne({id});
         if(!user) {
             throw new HttpException(status.NOT_FOUND, "User is not found");
         }
@@ -86,6 +86,11 @@ export class UsersService{
         return plainToInstance(UserDto, user);
     }
     static async remove(id: string) :Promise<void> {
-        await userModel.deleteOne({id});
+        const user = await userModel.findOne({id});
+        if(!user) {
+            throw new HttpException(status.NO_CONTENT,"User is not found")
+        }
+        Object.assign(user, {deletedAt: new Date});
+        await user.save()
     }
 }

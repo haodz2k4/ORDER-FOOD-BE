@@ -30,3 +30,7 @@
 2025-03-11T06:27:54.297Z [INFO]: {"method":"GET","url":"/api/v1/users?limit=1"}
 2025-03-11T06:28:14.926Z [INFO]: {"method":"GET","url":"/api/v1/users?limit=1&page=1"}
 2025-03-11T06:42:48.525Z [INFO]: {"method":"POST","url":"/api/v1/users"}
+2025-03-11T06:59:16.938Z [INFO]: {"method":"DELETE","url":"/api/v1/users/67cfdb6862a293122a514854"}
+2025-03-11T07:00:59.024Z [INFO]: {"method":"GET","url":"/api/v1/users?limit=1&page=1"}
+2025-03-11T07:01:28.282Z [INFO]: {"method":"GET","url":"/api/v1/users"}
+2025-03-11T07:12:23.622Z [INFO]: {"method":"GET","url":"/api/v1/users"}

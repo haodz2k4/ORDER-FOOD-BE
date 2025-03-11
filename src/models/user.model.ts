@@ -1,6 +1,7 @@
 import {model, Schema} from "mongoose";
 import { UserGender, UserStatus } from "../constants/model.constant";
 import { hashPassword } from "../utils/password";
+import { softRemovePlugin } from "./plugins/soft-remove.plugin";
 
 const userSchema = new Schema({
     fullName: {
@@ -44,7 +45,8 @@ userSchema.pre('save',async function(next) {
     if(this.isModified('password')) {
         this.password = await hashPassword(this.password);
     }
-    next()
+    next()  
 })
+userSchema.plugin(softRemovePlugin)
 
 export default model('User',userSchema);
