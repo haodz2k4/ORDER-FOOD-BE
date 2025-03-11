@@ -1,4 +1,4 @@
-import { UserGender, UserStatus } from "../../../constants/model.constant";
+import { UserGender, UserStatus } from "../constants/model.constant";
 
 
 export interface CreateUser {

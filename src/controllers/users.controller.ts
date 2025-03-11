@@ -1,5 +1,5 @@
 import status from 'http-status';
-import { UsersService } from '../services/users/users.service';
+import { UsersService } from '../services/users.service';
 import { catchAsync } from './../utils/catch-async';
 import { Request, Response } from 'express';
 import { HttpException } from '../utils/error';

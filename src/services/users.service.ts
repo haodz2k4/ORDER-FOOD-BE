@@ -1,14 +1,14 @@
-import { UserDto } from './../../dto/user.dto';
+import { UserDto } from '../dto/user.dto';
 import { plainToInstance } from "class-transformer";
-import userModel from "../../models/user.model";
-import { CreateUser } from "./interfaces/create-user.interface";
-import { QueryUser } from "./interfaces/query-user.interface";
-import { UpdateUser } from "./interfaces/update-user.interface";
-import { DEFAULT_CURRENT_PAGE, DEFAULT_LIMIT, DEFAULT_SORT_BY, DEFAULT_SORT_ORDER } from "../../constants/default.constant";
-import { getSkip, Pagination } from "../../utils/pagination";
-import { PaginatedDto } from "../../common/dto/paginated.dto";
-import { HttpException } from '../../utils/error';
+import userModel from "../models/user.model";
+import { DEFAULT_CURRENT_PAGE, DEFAULT_LIMIT, DEFAULT_SORT_BY, DEFAULT_SORT_ORDER } from "../constants/default.constant";
+import { getSkip, Pagination } from "../utils/pagination";
+import { PaginatedDto } from "../common/dto/paginated.dto";
+import { HttpException } from '../utils/error';
 import status from 'http-status';
+import { CreateUser } from '../interfaces/create-user.interface';
+import { QueryUser } from '../interfaces/query-user.interface';
+import { UpdateUser } from '../interfaces/update-user.interface';
 
 
 
