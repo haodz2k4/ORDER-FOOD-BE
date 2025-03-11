@@ -6,9 +6,9 @@ import { getSkip, Pagination } from "../utils/pagination";
 import { PaginatedDto } from "../common/dto/paginated.dto";
 import { HttpException } from '../utils/error';
 import status from 'http-status';
-import { CreateUser } from '../interfaces/create-user.interface';
-import { QueryUser } from '../interfaces/query-user.interface';
-import { UpdateUser } from '../interfaces/update-user.interface';
+import { CreateUser } from '../interfaces/users/create-user.interface';
+import { QueryUser } from '../interfaces/users/query-user.interface';
+import { UpdateUser } from '../interfaces/users/update-user.interface';
 
 
 
@@ -24,9 +24,8 @@ export class UsersService{
         return plainToInstance(UserDto, user);
     }
 
-    static async getUserByEmail(email: string): Promise<UserDto | null> {
+    static async getUserByEmail(email: string) {
         return await userModel.findOne({email});
-
     }
 
     static async getMany(query: QueryUser): Promise<PaginatedDto<UserDto>> {
