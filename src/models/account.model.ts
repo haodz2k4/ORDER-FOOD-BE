@@ -4,16 +4,16 @@ import { AccountStatus } from "../constants/model.constant";
 const accountSchema = new Schema({
     fullName: {
         type: String,
-        require: true
+        required: true
     },
     email: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     password: {
         type: String,
-        require: true
+        required: true
     },
     status: {
         type: String,

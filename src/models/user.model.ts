@@ -4,23 +4,23 @@ import { UserGender, UserStatus } from "../constants/model.constant";
 const userSchema = new Schema({
     fullName: {
         type: String,
-        require: true
+        required: true
     },
     avatar: String,
     email: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     phone: String,
     password: {
         type: String,
-        require: true
+        required: true
     },
     gender: {
         type: String,
         enum: [UserGender.FEMALE, UserGender.MALE],
-        require: true 
+        required: true 
     },
     status: {
         type: String,

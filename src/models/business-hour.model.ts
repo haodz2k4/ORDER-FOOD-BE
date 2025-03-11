@@ -18,11 +18,11 @@ const businessHourSchema = new Schema({
                 },
                 openTime: {
                     type: Date,
-                    require: true 
+                    required: true 
                 },
                 closeTime: {
                     type: Date,
-                    require: true 
+                    required: true 
                 },
                 closed: {
                     type: Boolean,

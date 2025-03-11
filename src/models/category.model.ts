@@ -5,7 +5,7 @@ const categorySchema = new Schema(
     {
         title: {
             type: String,
-            require: true 
+            required: true 
         },
         description: String,
         thumbnail: String,

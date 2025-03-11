@@ -6,15 +6,15 @@ const restaurantSchema = new Schema(
     {
         name: {
             type: String,
-            require: true 
+            required: true 
         },
         description: {
             type: String,
-            require: true 
+            required: true 
         },
         business_license: {
             type: String,
-            require: true 
+            required: true 
         },
         status: {
             type: String,
@@ -23,7 +23,7 @@ const restaurantSchema = new Schema(
         },
         phone: {
             type: String,
-            require: true,
+            required: true,
             minLength: 9,
             maxLength: 10
         },

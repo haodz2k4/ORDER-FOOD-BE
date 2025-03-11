@@ -1,11 +1,13 @@
 import { model, Schema } from "mongoose";
 
 
-const favoriteProductSchema = new Schema({
+
+const cartSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        required: true,
+        unique: true
     },
     items: {
         type: [
@@ -13,16 +15,17 @@ const favoriteProductSchema = new Schema({
                 product: {
                     type: Schema.Types.ObjectId,
                     ref: 'Product',
-                    required: true 
+                    required: true,
                 },
-                addedAt: {
-                    type: Date,
-                    default: Date.now()
+                quantity: {
+                    type: Number,
+                    required: true,
+                    min: 0
                 }
             }
         ],
-        default: [] 
+        default: []
     }
-})
+}, {timestamps: true})
 
-export default model('Favorite-product',favoriteProductSchema)
+export default model('Cart', cartSchema);
