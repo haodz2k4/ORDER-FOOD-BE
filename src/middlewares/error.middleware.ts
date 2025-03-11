@@ -7,6 +7,7 @@ import { SERVER_ERROR_MESSAGE } from "../constants/message.constant";
 
 export const errorMiddleware = (err: ErrorRequestHandler, req: Request, res: Response, next: NextFunction) => {
 
+    console.error(err)
     if(err instanceof HttpException) {
         res.status(err.statusCode).json({err: err.message})
     } else {

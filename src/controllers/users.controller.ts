@@ -47,9 +47,6 @@ export const updateUser = catchAsync(async (req: Request, res: Response) => {
     const {id} = req.params;
     const body = req.body;
     const user = await UsersService.update(id,body);
-    if(!user) {
-        throw new HttpException(status.NOT_FOUND, "User is not found")
-    }
     Res({
         res,
         message: 'Update user',
@@ -58,8 +55,8 @@ export const updateUser = catchAsync(async (req: Request, res: Response) => {
 })
 
 //DELETE /users/:id
-export const deleteUser = catchAsync(async (req: Request, res: Response) => {
+export const removeUser = catchAsync(async (req: Request, res: Response) => {
     const {id} = req.params;
-    await UsersService.delete(id);
+    await UsersService.remove(id);
     Res({res, statusCode: status.NO_CONTENT})
 })

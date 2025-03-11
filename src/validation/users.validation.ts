@@ -26,13 +26,13 @@ export const createUser: ValidateRequest = {
 }
 
 export const getUserById: ValidateRequest = {
-    param: Joi.object().keys({
+    params: Joi.object().keys({
         id: Joi.string().custom(validObjectId).required()
     })
 }
 
 export const updateUser: ValidateRequest = {
-    param: Joi.object().keys({
+    params: Joi.object().keys({
         id: Joi.string().custom(validObjectId).required()
     }),
     body: Joi.object().keys({
@@ -46,7 +46,7 @@ export const updateUser: ValidateRequest = {
 }
 
 export const deleteUser: ValidateRequest = {
-    param: Joi.object().keys({
+    params: Joi.object().keys({
         id: Joi.string().custom(validObjectId).required()
     })
 }

@@ -1,4 +1,4 @@
-import express, {Express, Response, Request} from "express";
+import express, {Express} from "express";
 import dotenv from "dotenv";
 dotenv.config()
 import config from "./config/config";
@@ -6,6 +6,8 @@ import { getConnection } from "./config/database";
 import AppRoute from "./routes/index.route";
 import { loggerMiddleware } from "./middlewares/logger.middleware";
 import { errorMiddleware } from "./middlewares/error.middleware";
+import bodyParser from "body-parser";
+
 const app: Express = express();
 
 
@@ -13,7 +15,8 @@ const app: Express = express();
 const App = () => {
     //Connect database
     getConnection()
-
+    //Body parser
+    app.use(bodyParser.json());
     //Logging
     app.use(loggerMiddleware)
 
