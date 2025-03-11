@@ -8,8 +8,8 @@ import { validObjectId } from "./common/custom.common";
 export const getUsers: ValidateRequest = {
     query: Joi.object().keys({
         ...queryValidate,
-        gender: Joi.valid(UserGender),
-        status: Joi.valid(UserStatus)
+        gender: Joi.string().valid(...Object.values(UserGender)),
+        status: Joi.string().valid(...Object.values(UserStatus))
     })
 }
 
@@ -17,10 +17,10 @@ export const createUser: ValidateRequest = {
     body: Joi.object().keys({
         fullName: Joi.string().min(3).max(50).required(),
         email: Joi.string().email().required(),
-        phone: Joi.string().pattern(/^[0-9]{10,11}$/).required(), 
+        phone: Joi.string().pattern(/^[0-9]{10,11}$/), 
         password: Joi.string().min(6).max(50).required(),
         gender: Joi.string().valid(...Object.values(UserGender)).required(),
-        status: Joi.string().valid(...Object.values(UserStatus)),
+        status: Joi.string(),
         birthDate: Joi.date().iso(),
     }),
 }
@@ -36,12 +36,12 @@ export const updateUser: ValidateRequest = {
         id: Joi.string().custom(validObjectId).required()
     }),
     body: Joi.object().keys({
-        fullName: Joi.string().min(3).max(50).optional(),
-        email: Joi.string().email().optional(),
-        phone: Joi.string().pattern(/^[0-9]{10,11}$/).optional(), 
-        gender: Joi.string().valid(...Object.values(UserGender)).optional(),
-        status: Joi.string().valid(...Object.values(UserStatus)).optional(),
-        birthDate: Joi.date().iso().optional(),
+        fullName: Joi.string().min(3).max(50),
+        email: Joi.string().email(),
+        phone: Joi.string().pattern(/^[0-9]{10,11}$/), 
+        gender: Joi.string(),
+        status: Joi.string(),
+        birthDate: Joi.date().iso(),
     })
 }
 
@@ -49,4 +49,4 @@ export const deleteUser: ValidateRequest = {
     params: Joi.object().keys({
         id: Joi.string().custom(validObjectId).required()
     })
-}
+};

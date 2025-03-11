@@ -1,16 +1,19 @@
+
 import { Router } from "express";
-import { createUser, removeUser, getUserById, getUsers, updateUser } from "../controllers/users.controller";
+import * as validation from "../validation/users.validation";
+import * as controller from "../controllers/users.controller";
+import { validationMiddleware } from "../middlewares/validation.middleware";
 const router = Router()
 router
     .route("/")
-    .get(getUsers)
-    .post(createUser)
+    .get(validationMiddleware(validation.getUsers),controller.getUsers)
+    .post(validationMiddleware(validation.createUser),controller.createUser)
 
 router
     .route("/:id")
-    .get(getUserById)
-    .patch(updateUser)
-    .delete(removeUser)
+    .get(validationMiddleware(validation.getUserById),controller.getUserById)
+    .patch(validationMiddleware(validation.updateUser),controller.updateUser)
+    .delete(validationMiddleware(validation.deleteUser),controller.removeUser)
 
 
 export default router

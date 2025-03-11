@@ -7,7 +7,7 @@ import { UpdateUser } from "./interfaces/update-user.interface";
 import { DEFAULT_CURRENT_PAGE, DEFAULT_LIMIT, DEFAULT_SORT_BY, DEFAULT_SORT_ORDER } from "../../constants/default.constant";
 import { getSkip, Pagination } from "../../utils/pagination";
 import { PaginatedDto } from "../../common/dto/paginated.dto";
-import { HttpException } from '../../utils/http-error';
+import { HttpException } from '../../utils/error';
 import status from 'http-status';
 
 
@@ -88,7 +88,7 @@ export class UsersService{
     static async remove(id: string) :Promise<void> {
         const user = await userModel.findOne({id});
         if(!user) {
-            throw new HttpException(status.NO_CONTENT,"User is not found")
+            throw new HttpException(status.NOT_FOUND,"User is not found")
         }
         Object.assign(user, {deletedAt: new Date});
         await user.save()

@@ -1,40 +1,39 @@
 import { Request, Response, NextFunction } from "express";
+import status from "http-status";
 import { ObjectSchema } from "joi";
+import { ValidationException } from "../utils/error";
 
-
-
-export const validateMiddleware = (schema: {
-    body?: ObjectSchema,
-    query?: ObjectSchema,
-    param?: ObjectSchema
+export const validationMiddleware = (schema: {
+  body?: ObjectSchema;
+  query?: ObjectSchema;
+  params?: ObjectSchema;
 }) => {
-    return (req: Request, res: Response, next: NextFunction) => {
-        const options = { abortEarly: false, stripUnknown: true };
-        const errors: Record<string, unknown> = {};
+  return (req: Request, res: Response, next: NextFunction) => {
+    const validationErrors: string[] = [];
 
-        if (schema.body) {
-            const { error, value } = schema.body.validate(req.body, options);
-            if (error) errors.body = error.details.map((err) => err.message);
-            else req.body = value;
-        }
+    if (schema.body) {
+      const { error } = schema.body.validate(req.body, { abortEarly: false });
+      if (error) validationErrors.push(...error.details.map((err) => err.message));
+    }
 
-        if (schema.query) {
-            const { error, value } = schema.query.validate(req.query, options);
-            if (error) errors.query = error.details.map((err) => err.message);
-            else req.query = value;
-        }
+    if (schema.query) {
+      const { error } = schema.query.validate(req.query, { abortEarly: false });
+      if (error) validationErrors.push(...error.details.map((err) => err.message));
+    }
 
-        if (schema.param) {
-            const { error, value } = schema.param.validate(req.params, options);
-            if (error) errors.params = error.details.map((err) => err.message);
-            else req.params = value;
-        }
+    if (schema.params) {
+      const { error } = schema.params.validate(req.params, { abortEarly: false });
+      if (error) validationErrors.push(...error.details.map((err) => err.message));
+    }
 
-        if (Object.keys(errors).length) {
-            res.status(400).json({ errors });
-            return;
-        }
+    if (validationErrors.length > 0) {
+        throw new ValidationException(
+          status.BAD_REQUEST,
+          "Validation error",
+          validationErrors
+        )
+    }
 
-        next();
-    };
+    next();
+  };
 };

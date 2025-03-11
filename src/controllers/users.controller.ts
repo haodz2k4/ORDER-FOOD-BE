@@ -2,7 +2,7 @@ import status from 'http-status';
 import { UsersService } from '../services/users/users.service';
 import { catchAsync } from './../utils/catch-async';
 import { Request, Response } from 'express';
-import { HttpException } from '../utils/http-error';
+import { HttpException } from '../utils/error';
 import { Res } from '../utils/response';
 import { UserDto } from '../dto/user.dto';
 
