@@ -7,7 +7,9 @@ import AppRoute from "./routes/index.route";
 import { loggerMiddleware } from "./middlewares/logger.middleware";
 import { errorMiddleware } from "./middlewares/error.middleware";
 import bodyParser from "body-parser";
-
+import { swaggerOptions } from "./swaggers/swagger.option";
+import swaggerJSDoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express"
 const app: Express = express();
 
 
@@ -19,7 +21,9 @@ const App = () => {
     app.use(bodyParser.json());
     //Logging
     app.use(loggerMiddleware)
-
+    //Swagger 
+    const swaggerDocs = swaggerJSDoc(swaggerOptions);
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
     //Route 
     AppRoute(app)
 
