@@ -1,5 +1,6 @@
 import {model, Schema} from "mongoose";
 import { UserGender, UserStatus } from "../constants/model.constant";
+import { hashPassword } from "../utils/password";
 
 const userSchema = new Schema({
     fullName: {
@@ -38,5 +39,12 @@ const userSchema = new Schema({
     birthDate: Date
 },{timestamps: true})
 
+//HASH PASSWORD PREVIOUS CREATE
+userSchema.pre('save',async function(next) {
+    if(this.isModified(this.password)) {
+        this.password = await hashPassword(this.password);
+    }
+    next()
+})
 
 export default model('User',userSchema);
