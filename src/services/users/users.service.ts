@@ -15,8 +15,18 @@ import status from 'http-status';
 export class UsersService{
 
     static async create(createData: CreateUser) :Promise<UserDto> {
-        const user = await userModel.create(createData);
+        const {email} = createData;
+        const isExists = await this.getUserByEmail(email);
+        if(isExists) {
+            throw new HttpException(status.BAD_REQUEST,"Email is already taken");
+        }
+        const user = await userModel.create(createData)
         return plainToInstance(UserDto, user);
+    }
+
+    static async getUserByEmail(email: string): Promise<UserDto | null> {
+        return await userModel.findOne({email});
+
     }
 
     static async getMany(query: QueryUser): Promise<PaginatedDto<UserDto>> {

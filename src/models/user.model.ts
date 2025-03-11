@@ -41,7 +41,7 @@ const userSchema = new Schema({
 
 //HASH PASSWORD PREVIOUS CREATE
 userSchema.pre('save',async function(next) {
-    if(this.isModified(this.password)) {
+    if(this.isModified('password')) {
         this.password = await hashPassword(this.password);
     }
     next()
