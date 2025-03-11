@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import Joi, { ObjectSchema } from "joi";
+import { ObjectSchema } from "joi";
 
 
 
@@ -10,7 +10,7 @@ export const validateMiddleware = (schema: {
 }) => {
     return (req: Request, res: Response, next: NextFunction) => {
         const options = { abortEarly: false, stripUnknown: true };
-        const errors: any = {};
+        const errors: Record<string, unknown> = {};
 
         if (schema.body) {
             const { error, value } = schema.body.validate(req.body, options);
