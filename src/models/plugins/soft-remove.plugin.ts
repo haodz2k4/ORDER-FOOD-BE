@@ -1,11 +1,7 @@
-import { Schema, Document } from "mongoose";
+import { Schema } from "mongoose";
 
-interface SoftDeletableDocument extends Document {
-  deletedAt?: Date | null;
-  softRemove: () => Promise<void>;
-}
 
-export const softRemovePlugin = (schema: Schema<SoftDeletableDocument>) => {
+export const softRemovePlugin = (schema: Schema) => {
 
   schema.pre("find", function () {
     this.where({ deletedAt: null });

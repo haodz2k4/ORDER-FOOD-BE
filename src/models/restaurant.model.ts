@@ -1,5 +1,6 @@
 import { model, Schema } from "mongoose";
 import { RestaurantStatus } from "../constants/model.constant";
+import { softRemovePlugin } from "./plugins/soft-remove.plugin";
 
 
 const restaurantSchema = new Schema(
@@ -40,5 +41,7 @@ const restaurantSchema = new Schema(
         timestamps: true
     }
 )
+
+restaurantSchema.plugin(softRemovePlugin)
 
 export default model('Restaurant', restaurantSchema)

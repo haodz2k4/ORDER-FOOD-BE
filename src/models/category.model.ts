@@ -1,4 +1,5 @@
 import { model, Schema } from "mongoose";
+import { softRemovePlugin } from "./plugins/soft-remove.plugin";
 
 
 const categorySchema = new Schema(
@@ -18,5 +19,7 @@ const categorySchema = new Schema(
         timestamps: true
     }
 )
+
+categorySchema.plugin(softRemovePlugin)
 
 export default model('Category',categorySchema)

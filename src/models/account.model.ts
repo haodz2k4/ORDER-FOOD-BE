@@ -1,5 +1,6 @@
 import {model, Schema} from "mongoose";
 import { AccountStatus } from "../constants/model.constant";
+import { softRemovePlugin } from "./plugins/soft-remove.plugin";
 
 const accountSchema = new Schema({
     fullName: {
@@ -29,6 +30,6 @@ const accountSchema = new Schema({
         ref: 'Role'
     }
 },{timestamps: true})
-
+accountSchema.plugin(softRemovePlugin);
 
 export default model('Account',accountSchema)

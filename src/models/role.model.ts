@@ -1,5 +1,6 @@
 import { model, Schema } from "mongoose";
 import { CrudEnum } from "../constants/app.constant";
+import { softRemovePlugin } from "./plugins/soft-remove.plugin";
 
 
 const roleSchema = new Schema(
@@ -25,5 +26,7 @@ const roleSchema = new Schema(
         timestamps: true
     }
 )
+
+roleSchema.plugin(softRemovePlugin)
 
 export default model('Role', roleSchema);

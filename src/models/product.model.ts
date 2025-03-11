@@ -1,5 +1,6 @@
 import { model, Schema } from "mongoose";
 import { ProductStatus } from "../constants/model.constant";
+import { softRemovePlugin } from "./plugins/soft-remove.plugin";
 
 
 const productSchema = new Schema(
@@ -42,5 +43,7 @@ const productSchema = new Schema(
         timestamps: true 
     }
 )
+
+productSchema.plugin(softRemovePlugin)
 
 export default model('Product', productSchema)
