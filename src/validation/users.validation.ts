@@ -21,6 +21,7 @@ export const createUser: ValidateRequest = {
         password: Joi.string().min(6).max(50).required(),
         gender: Joi.string().valid(...Object.values(UserGender)).required(),
         status: Joi.string(),
+        verified: Joi.boolean(),
         birthDate: Joi.date().iso(),
     }),
 }
