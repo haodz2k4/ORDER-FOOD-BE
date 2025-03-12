@@ -10,7 +10,7 @@ export class JwtService {
     static async generateAccessToken(id: string) :Promise<string> {
         return await jwt.sign(
             {
-                id, 
+                _id: id, 
                 type: JwtType.ACCESS
             },
             config.JWT.ACCESS.SECRET,
@@ -23,7 +23,7 @@ export class JwtService {
     static async generateRefreshToken(id: string): Promise<string> {
         return await jwt.sign(
             {
-                id,
+                _id: id,
                 type: JwtType.REFRESH
             },
             config.JWT.REFRESH.SECRET,
@@ -33,5 +33,17 @@ export class JwtService {
         )
     }
 
+    static async generateVerifyEmailToken(id: string) :Promise<string> {
+        return await jwt.sign(
+            {
+                _id: id,
+                type: JwtType.VERIFY_EMAIL
+            },
+            config.JWT.VERIFY_EMAIL.SECRET,
+            {
+                expiresIn: config.JWT.VERIFY_EMAIL.EXPIRE
+            }
+        )
+    }
     
 }

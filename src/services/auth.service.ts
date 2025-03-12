@@ -29,4 +29,5 @@ export class AuthService {
             expiresIn: ms(config.JWT.ACCESS.EXPIRE) / 1000
         })
     }
+    
 }
