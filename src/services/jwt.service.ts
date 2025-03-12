@@ -7,7 +7,7 @@ import config from '../config/config';
 export class JwtService {
 
 
-    async generateAccessToken(id: string) :Promise<string> {
+    static async generateAccessToken(id: string) :Promise<string> {
         return await jwt.sign(
             {
                 id, 
@@ -20,7 +20,7 @@ export class JwtService {
         );
     }
 
-    async generateRefreshToken(id: string): Promise<string> {
+    static async generateRefreshToken(id: string): Promise<string> {
         return await jwt.sign(
             {
                 id,
