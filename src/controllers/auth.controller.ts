@@ -13,3 +13,14 @@ export const login = catchAsync(async (req: Request, res: Response) => {
         data
     })
 })
+
+
+//[POST] 'auth/register'
+export const register = catchAsync(async (req: Request, res: Response) => {
+    await AuthService.register(req.body);
+    Res({
+        res,
+        message: "Please check your email to verify"
+    })
+})
+

@@ -16,9 +16,9 @@ export class MailService {
 
     static async sendVerifyEmail(to: string, token: string) {
         
-        const url = `${config.APP_URL}/auth?token=${token}`;
+        const url = `${config.APP_URL}/auth/verify-email?token=${token}`;
 
-        const filePath = path.join(__dirname,'verify-email.txt'); 
+        const filePath = path.join(__dirname,'../templates/verify-email.txt'); 
         const html = readFileSync(filePath, {encoding: 'utf-8'})
             .replace('{{url}}',url);
         await transporter.sendMail({

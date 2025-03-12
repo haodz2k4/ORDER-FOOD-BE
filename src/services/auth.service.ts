@@ -6,6 +6,8 @@ import { LoginDto } from "../dto/auth/LoginDto";
 import { plainToInstance } from "class-transformer";
 import config from "../config/config";
 import ms from "ms";
+import { Register } from "../interfaces/auth/register.interface";
+import { MailService } from "./mail.service";
 
 
 export class AuthService {
@@ -30,4 +32,9 @@ export class AuthService {
         })
     }
     
+    static async register(data: Register) :Promise<void> {
+        const user = await UsersService.create(data);
+        const veriyEmailToken = await JwtService.generateVerifyEmailToken(user._id);
+        await MailService.sendVerifyEmail(data.email, veriyEmailToken);
+    }
 }
